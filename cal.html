@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Simple calculater</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+
+<div class="calc_form"><br>
+	<div class=header>WELCOME TO CALCULATER</div><br>
+<form name="form1">
+<input type="text" id="inputtext" name="results"><br><br>
+<input type="button" id="clear" value="AC" onclick="form1.results.value=''; showmsg('Deleted all inputs');">
+<input type="button" id="clear" value="DEL" onclick="form1.results.value=form1.results.value.slice(0,-1) || ' '; showmsg('Last Element Deleted');">
+<input type="button" id="clear" value="%" onclick="form1.results.value=form1.results.value+ '%' ; showmsg('Percentage symbol  Added');">
+<input type="button" value="/" id="special"onclick="form1.results.value=form1.results.value+ '/'; showmsg('Division Symbol  Added'); "><br><br>
+<input type="button" value="7" onclick="form1.results.value=form1.results.value+ '7' ; showmsg('7  Added');">
+<input type="button" value="8" onclick="form1.results.value=form1.results.value+ '8' ; showmsg('8  Added');">
+<input type="button" value="9" onclick="form1.results.value=form1.results.value+ '9' ; showmsg('9  Added');">
+<input type="button" value="*" id="special" onclick="form1.results.value=form1.results.value+ '*' ; showmsg('Multiplication Symbol Added');"><br><br>
+<input type="button" value="4" onclick="form1.results.value=form1.results.value+ '4' ; showmsg('4  Added');">
+<input type="button" value="5" onclick="form1.results.value=form1.results.value+ '5' ; showmsg('5  Added');">
+<input type="button" value="6" onclick="form1.results.value=form1.results.value+ '6' ; showmsg('6  Added');">
+<input type="button" value="-" id="special" onclick="form1.results.value=form1.results.value+ '-' ; showmsg('Subraction Symbol  Added');"><br><br>
+<input type="button" value="1" onclick="form1.results.value=form1.results.value+ '1'; showmsg('1 Added'); ">
+<input type="button" value="2" onclick="form1.results.value=form1.results.value+ '2' ; showmsg('2  Added');">
+<input type="button" value="3" onclick="form1.results.value=form1.results.value+ '3' ; showmsg('3  Added');">
+<input type="button" value="+" id="special" onclick="form1.results.value=form1.results.value+ '+' ; showmsg('Addition symbol added');"><br><br>
+<input type="button" value="0" onclick="form1.results.value=form1.results.value+ '0' ; showmsg('0 Added');">
+<input type="button" value="00" onclick="form1.results.value=form1.results.value+ '00' ; showmsg('00 Added');">
+<input type="button" value="." onclick="form1.results.value=form1.results.value+ '.' ; showmsg('Dot Symbol Added');">
+<input type="button" value="=" id="special" onclick="form1.results.value=eval(form1.results.value); showmsg('Final Result');"><br><br>
+
+</form>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+   function showmsg(val) {
+
+
+
+    Toastify({
+        text: val, // Display the message passed to the function
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js", // Optional link
+        newWindow: true,
+        close: true,
+        gravity:"bottom", // Position of the toast
+        position: "right", // `left`, `center`, or `right`
+        stopOnFocus: true, // Prevents dismissing the toast on hover
+        style: {
+            background: "blue",
+            color:"white"
+        },
+        onClick: function() {} // Optional callback
+    }).showToast();
+
+
+
+}
+   	// Show toast notification when the document is loaded
+document.addEventListener('DOMContentLoaded', function () {
+  Toastify({
+    text: "Welcome to my calculator",
+    duration: 3000,  // Duration in milliseconds
+    close: true,     // Show close button
+    gravity: "Top", // Position at the bottom of the screen
+    position: "center", // Center horizontally
+    backgroundColor: "blue", // Background color of the toast
+    stopOnFocus: true, // Stop the toast if it's focused
+  }).showToast();
+});
+
+</script>
+</body>
+</html>
+
