@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading"> WEATHER PREDICTION </h1>
+    
+        <select id="wea">
+            <option value="">Select a district</option>
+            <option value="ariyalur">Ariyalur</option>
+            <option value="chengalpattu">Chengalpattu</option>
+            <option value="chennai">Chennai</option>
+            <option value="coimbatore">Coimbatore</option>
+            <option value="cuddalore">Cuddalore</option>
+            <option value="dharmapuri">Dharmapuri</option>
+            <option value="dindigul">Dindigul</option>
+            <option value="erode">Erode</option>
+            <option value="Kanchipuram">Kanchipuram</option>
+            <option value="karur">Karur</option>
+            <option value="krishnagiri">Krishnagiri</option>
+            <option value="madurai">Madurai</option>
+            <option value="nagapattinam">Nagapattinam</option>
+            <option value="namakkal">Namakkal</option>
+            <option value="nilgiri">Nilgiri</option>
+            <option value="perambalur">Perambalur</option>
+            <option value="pudukkottai">Pudukkottai</option>
+            <option value="ramanathapuram">Ramanathapuram</option>
+            <option value="Ranipettai">Ranipettai</option>
+            <option value="salem">Salem</option>
+            <option value="sivaganga">Sivaganga</option>
+            <option value="tenkasi">Tenkasi</option>
+            <option value="thanjavur">Thanjavur</option>
+            <option value="theni">Theni</option>
+            <option value="thoothukudi">Thoothukudi</option>
+            <option value="tiruchirappalli">Tiruchirappalli</option>
+            <option value="tirunelveli">Tirunelveli</option>
+            <option value="tirupathur">Tirupathur</option>
+            <option value="tiruppur">Tiruppur</option>
+            <option value="tiruvallur">Tiruvallur</option>
+            <option value="tiruvannamalai">Tiruvannamalai</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+            <option value="vellore">Vellore</option>
+            <option value="villupuram">Villupuram</option>
+            <option value="virudhunagar">Virudhunagar</option>
+        </select>
+    </div>
+
+    <div class="result">
+        <h2 id="city-name">------</h2>
+        <div>
+            <h1 id="weather-type">------</h1>
+            <div>
+                <h3>Temperature: <span id="temp"></span><span>°F</span></h3>
+                <h3>Minimum Temperature: <span id="min-temp"></span><span>°F</span></h3>
+                <h3>Maximum Temperature: <span id="max-temp"></span><span>°F</span></h3>
+            </div>
+        </div>
+    </div>
+<br>
+
+    <div class="weather-info">
+        <h3 id="des">Description</h3>
+        <p>1. <b>Mist:</b> Thin water droplets in the air that make everything look blurry, usually in cool, damp weather.</p>
+        <p>2. <b>Overcast Clouds: </b>The sky is fully covered with gray clouds, blocking the sun and looking dull.</p>
+        <p>3. <b>Light Rain:</b> Gentle and soft rain that falls slowly, usually without causing much trouble.</p>
+        <p>4. <b>Broken Clouds:</b> The sky has gaps of blue visible between patches of clouds.</p>
+        <p>5. <b>Moderate Rain: </b>Steady rain, not too light or heavy, that can wet roads and surroundings.</p>
+        <p>6. <b>Heavy Intensity Rain:</b> Very strong and nonstop rain that can cause water to collect on roads.</p>
+        <p>7. <b>Scattered Clouds:</b> A few clouds spread out in the sky with plenty of blue sky visible.</p>
+        <p>8. <b>Light Intensity Drizzle:</b> Very fine and soft rain, almost like a mist, barely wetting the ground.</p>
+        <p>9. <b>Clear Sky: </b>The sky is completely blue with no clouds, giving bright and sunny weather.</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+</html>
