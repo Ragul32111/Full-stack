@@ -12,7 +12,7 @@ This is a simple Calculator web application built using **HTML**, **CSS**, **Jav
 ## Demo
 
 You can try out the live demo of the calculator here:  
-[Live Demo - Calculator App](https://ragul32111.github.io/Full-stack/)
+[Live Demo - Calculator App](https://ragul32111.github.io/Full-stack/calculater)
 
 ## Technologies Used
 
