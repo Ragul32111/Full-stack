@@ -1,0 +1,300 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #4fabfc;
+}
+
+.hidden {
+    display: none !important;
+  }
+
+/* Container for the To-Do List and Authentication */
+.container {
+    width: 100%;
+    max-width: 600px !important;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Authentication Section */
+.welcome-section, .todo-input {
+    margin-bottom: 20px;
+}
+
+/* Welcome Section Styling */
+#welcomeMessage {
+    color: #ff5733;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+/* To-Do List Styling */
+#todoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Each Task Styling */
+#todoList li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Styling for task text and status */
+#todoList li span {
+    font-weight: bold;
+    flex: 0;
+}
+
+/* Status styling */
+.status {
+    margin-left: 10px;
+}
+
+/* Buttons inside To-Do items */
+.todo-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 250px; /* Adjusted width for proper spacing */
+}
+
+/* Button Styles */
+.todo-buttons button {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 30%; /* Added width to make buttons of equal size */
+}
+
+/* Specific Button Styles */
+.todo-buttons .edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.todo-buttons .edit:hover {
+    background-color: #e0a800;
+}
+
+.todo-buttons .delete {
+    background-color: #dc3545;
+    color: white;
+    width: max-content;
+}
+
+.todo-buttons .delete:hover {
+    background-color: #a71d2a;
+}
+
+.todo-buttons .toggle-status {
+    background-color: #28a745;
+    color: white;
+}
+
+.todo-buttons .toggle-status:hover {
+    background-color: #218838;
+}
+
+/* Sign-Out Button Styling */
+#signOutBtn {
+    background-color: #dc3545;
+    color: white;
+  
+    border-radius: 5px;
+    cursor: pointer;
+   
+    width: 20%; /* Full-width button to make it align perfectly */
+}
+
+#signOutBtn:hover {
+    background-color: #a71d2a;
+}
+
+/* Input and Buttons Styling */
+input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Task Input Section */
+.todo-input {
+    margin-bottom: 20px;
+}
+
+/* Google Sign-In Button */
+.google-button {
+    background-color: #4c0fdb;
+    padding: 10px;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.google-button:hover {
+    background-color:#250474 ;
+}
+
+/* Button for Adding Tasks */
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/*.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-*/
+
+
+/* Media Query for 300px to 1200px Screens */
+@media  (max-width: 700px) {
+    body {
+        font-size: 0.9em; /* Smaller font size */
+        padding: 40px 20px; /* Less padding for better fit */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+        box-shadow: none;
+        border-radius: 8px;
+    }
+    
+
+    #todoList li {
+        padding: 8px;
+        margin: 5px 0;
+        font-size: 0.8em; /* Smaller font size for task items */
+    }
+
+    .todo-buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Adjusting buttons to be full width */
+        padding: 0 10px; /* Added padding for better spacing */
+    }
+
+
+    .todo-buttons button {
+        width: 30%; /* Smaller, equal size for all buttons */
+        padding: 5px 8px; /* Smaller padding for button alignment */
+        font-size: 0.8em; /* Adjusted button text size */
+    }
+
+    .todo-buttons .edit {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .todo-buttons .delete {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .todo-buttons .toggle-status {
+        background-color: #28a745;
+        color: white;
+        width: auto;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        width: 60%;
+        font-size: 0.9em; /* Smaller font size for input */
+    }
+
+
+    .google-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em; /* Slightly smaller font size */
+    }
+
+    /* Adjusting the sign-out button */
+    #signOutBtn {
+        width: 25%; /* Smaller sign-out button */
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}
+@media (min-width: 350px){
+    body {
+        font-size: 0.8em; /* Smaller font size for compact layout */
+        padding: 20px 10px; /* Reduced padding */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%; /* Full width for small screens */
+        padding: 10px; /* Minimal padding */
+        box-shadow: none; /* Remove shadow for simplicity */
+        border-radius: 5px; /* Slightly less rounding */
+    }
+
+    #todoList li {
+        padding: 6px;
+        margin: 4px 0; /* Reduced spacing between items */
+        font-size: 1em; /* Smaller font size for task items */
+    }
+
+    .todo-buttons {
+        display: flex;
+        justify-content: flex-start;
+        width: 20%; /* Full-width button container */
+        padding: 0 5px; /* Minimal padding */
+    }
+
+    .todo-buttons button {
+        width: fit-content; /* Equal size for buttons */
+        padding: 4px 6px; /* Compact button padding */
+        font-size: 0.7em; /* Smaller button text size */
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        width: 75%; /* Narrower input field */
+        font-size: 0.8em; /* Adjusted font size */
+    }
+
+    .google-button {
+        width: 50%; /* Full-width button */
+        padding: 8px;
+        font-size: 0.8em; /* Reduced font size for the button */
+    }
+
+    #signOutBtn {
+        width: 20%; /* Larger button for better accessibility */
+        padding: 6px;
+        font-size: 0.8em;
+    }
+    button {
+        padding: 10px 7px !important;
+    }
+}
