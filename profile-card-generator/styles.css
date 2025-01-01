@@ -1,0 +1,229 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gradient Background Animation */
+@keyframes gradientBackground {
+  0% {
+    background: linear-gradient(45deg, #3498db, #8e44ad);
+  }
+  50% {
+    background: linear-gradient(45deg, #8e44ad, #e74c3c);
+  }
+  100% {
+    background: linear-gradient(45deg, #e74c3c, #3498db);
+  }
+}
+
+/* Moving Background */
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Text Shadow Animation */
+@keyframes textShadow {
+  0% {
+    text-shadow: 0px 0px 5px #3498db, 0px 0px 10px #3498db;
+  }
+  50% {
+    text-shadow: 0px 0px 10px #8e44ad, 0px 0px 20px #8e44ad;
+  }
+  100% {
+    text-shadow: 0px 0px 5px #3498db, 0px 0px 10px #3498db;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(45deg, #3498db, #8e44ad);
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite; /* Animate the gradient */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* Header */
+h1 {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px;
+  
+}
+
+/* Form Styling */
+form {
+  background:rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #ffffff;
+  align-self: flex-start;
+}
+
+input,
+textarea,
+button {
+  background:#cdcaca;
+  width: 100%;
+  color: #000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+button {
+  background-color: #0023a3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  display: block;
+  margin: 20px auto; /* Center the button horizontally */
+  width: 40%;
+}
+
+button:hover {
+  background-color: #051a68;
+  transform: translateY(-2px);
+}
+
+/* Profile Card Styling */
+#profileCard {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto;
+  display: block;
+  width: 100%;
+  max-width: 400px; /* Ensure proper width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#profileCard:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+}
+
+/* Profile Card Image */
+.profile-card img {
+  border-radius: 50%;
+  border: 3px solid #000279;
+  margin-bottom: 10px;
+  max-width: 150px;
+  height: auto; /* Ensure the aspect ratio is maintained */
+}
+
+/* Profile Card Name */
+.profile-card h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #000;
+}
+
+/* Profile Card Description */
+.profile-card p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words if necessary */
+  overflow: visible; /* Ensure no content is hidden */
+  text-align: justify; /* Align text neatly for better readability */
+}
+
+/* Download Button */
+#downloadProfileBtn {
+  display: block;
+  margin: 20px auto; /* Center the button horizontally */
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 60%;
+  font-weight: bold;
+  background-color: #0023a3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#downloadProfileBtn:hover {
+  background-color: #051a68;
+  transform: translateY(-2px);
+}
+
+/* Button Hover Effect */
+button {
+  background-color: #0023a3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1); /* Slight scaling effect */
+  background-color: #051a68; /* Change color */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+  form,
+  #profileCard {
+    width: 90%;
+  }
+
+  .profile-card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  button {
+    width: 40%;
+  }
+}

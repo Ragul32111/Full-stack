@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Card Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Login Page -->
+  <div id="signInPage">
+    <h1>Welcome to Profile Card Generator.</h1>
+    <button id="githubLoginBtn" class="btn github-btn" style=" background: black;"><i class="fa-brands fa-github"></i>&nbsp;&nbsp;Sign in with GitHub</button>
+  </div>
+
+  <!-- Welcome Page -->
+  <div id="welcomePage" class="hidden">
+    <form id="profileForm" class="hidden">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" rows="3" placeholder=" Enter a short description" required></textarea>
+
+      <label for="image">Profile Picture:</label>
+      <input type="file" id="image" accept="image/*" required>
+
+      <button type="submit">Generate Profile</button>
+      <button id="signOutBtn" class="btn signout-btn">Sign Out</button>
+    </form>
+
+    <!-- Profile Card Display -->
+    <div id="profileCard" class="hidden" style=" background:rgba(0, 0, 0, 0.2);"></div>
+
+    <!-- Download Button -->
+    <button id="downloadProfileBtn" class="btn download-btn hidden">Download Profile Card</button>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
+
+</html>
