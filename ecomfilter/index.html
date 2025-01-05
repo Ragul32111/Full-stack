@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            width: 95%;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .filter-container {
+            width: 25%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        .filter-container input,
+        .filter-container label {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .product-list {
+            width: 75%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product {
+            width: 200px;
+            height: 300px; /* Set a fixed height for the product */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product h4 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product p {
+            font-size: 14px;
+            color: #888;
+        }
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+            text-align: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 60%;
+            text-align: center;
+        }
+        .modal-content img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .modal-content h4 {
+            margin-top: 20px;
+        }
+        .modal-content p {
+            margin-top: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Ecommerce Store</h1>
+    </div>
+
+    <!-- Search Bar -->
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-container">
+            <h3>Filter Products</h3>
+            
+            <!-- Price Range Filter -->
+            <div>
+                <h4>Price Range</h4>
+                <label for="minPrice">Min Price: ₹<span id="minPriceValue">0</span></label>
+                <input type="range" id="minPrice" name="minPrice" min="0" max="50000" value="0" step="500">
+                
+                <label for="maxPrice">Max Price: ₹<span id="maxPriceValue">50000</span></label>
+                <input type="range" id="maxPrice" name="maxPrice" min="0" max="50000" value="50000" step="500">
+            </div>
+
+            <!-- Product Name Filter (Checkboxes) -->
+            <div class="checkbox-group">
+                <h4>Product Names</h4>
+                <label><input type="checkbox" value="Smartphone X" class="product-checkbox"> Smartphone X</label>
+                <label><input type="checkbox" value="Laptop Pro" class="product-checkbox"> Laptop Pro</label>
+                <label><input type="checkbox" value="Wireless Earbuds" class="product-checkbox"> Wireless Earbuds</label>
+                <label><input type="checkbox" value="Smart Watch" class="product-checkbox"> Smart Watch</label>
+                <label><input type="checkbox" value="Gaming Mouse" class="product-checkbox"> Gaming Mouse</label>
+                <label><input type="checkbox" value="Bluetooth Speaker" class="product-checkbox"> Bluetooth Speaker</label>
+                <label><input type="checkbox" value="4K TV" class="product-checkbox"> 4K TV</label>
+                <label><input type="checkbox" value="Drone Camera" class="product-checkbox"> Drone Camera</label>
+                <label><input type="checkbox" value="Portable Charger" class="product-checkbox"> Portable Charger</label>
+                <label><input type="checkbox" value="Smart Home Device" class="product-checkbox"> Smart Home Device</label>
+            </div>
+        </div>
+
+        <!-- Product List Section -->
+        <div class="product-list" id="productList">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Modal for Larger View -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Product Image">
+            <h4 id="modalTitle"></h4>
+            <p id="modalPrice"></p>
+        </div>
+    </div>
+
+    <script>
+        // Sample Products Data (Updated with prices in Rupees)
+        const products = [
+            { id: 1, name: 'Smartphone X', price: 10000, image: 'https://via.placeholder.com/150/FF5733/ffffff?text=Smartphone+X' },
+            { id: 2, name: 'Laptop Pro', price: 15000, image: 'https://via.placeholder.com/150/33C1FF/ffffff?text=Laptop+Pro' },
+            { id: 3, name: 'Wireless Earbuds', price: 20000, image: 'https://via.placeholder.com/150/FF33A1/ffffff?text=Earbuds' },
+            { id: 4, name: 'Smart Watch', price: 8000, image: 'https://via.placeholder.com/150/FFE033/ffffff?text=Smart+Watch' },
+            { id: 5, name: 'Gaming Mouse', price: 12000, image: 'https://via.placeholder.com/150/33FF57/ffffff?text=Gaming+Mouse' },
+            { id: 6, name: 'Bluetooth Speaker', price: 25000, image: 'https://via.placeholder.com/150/FF5733/ffffff?text=Bluetooth+Speaker' },
+            { id: 7, name: '4K TV', price: 30000, image: 'https://via.placeholder.com/150/FF8C33/ffffff?text=4K+TV' },
+            { id: 8, name: 'Drone Camera', price: 9000, image: 'https://via.placeholder.com/150/33A1FF/ffffff?text=Drone+Camera' },
+            { id: 9, name: 'Portable Charger', price: 5000, image: 'https://via.placeholder.com/150/FF5733/ffffff?text=Portable+Charger' },
+            { id: 10, name: 'Smart Home Device', price: 17000, image: 'https://via.placeholder.com/150/33FF57/ffffff?text=Smart+Home+Device' },
+        ];
+
+        // Function to display products
+        function displayProducts(filteredProducts) {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            filteredProducts.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h4>${product.name}</h4>
+                    <p>Price: ₹${product.price}</p>
+                `;
+                productElement.addEventListener('click', () => openModal(product));
+                productList.appendChild(productElement);
+            });
+        }
+
+        // Function to open product modal
+        function openModal(product) {
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalTitle').innerText = product.name;
+            document.getElementById('modalPrice').innerText = 'Price: ₹' + product.price;
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        // Close modal
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('productModal').style.display = 'none';
+        });
+
+        // Filter products based on search and checkboxes
+        function filterProducts() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const selectedCheckboxes = Array.from(document.querySelectorAll('.product-checkbox:checked')).map(checkbox => checkbox.value);
+            const minPrice = parseInt(document.getElementById('minPrice').value);
+            const maxPrice = parseInt(document.getElementById('maxPrice').value);
+
+            const filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchQuery);
+                const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+                const matchesCheckbox = selectedCheckboxes.length === 0 || selectedCheckboxes.includes(product.name);
+
+                return matchesSearch && matchesPrice && matchesCheckbox;
+            });
+
+            displayProducts(filteredProducts);
+        }
+
+        // Event Listeners for search bar and checkboxes
+        document.getElementById('searchBar').addEventListener('input', filterProducts);
+        document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', filterProducts);
+        });
+
+        // Event Listeners for price range sliders
+        document.getElementById('minPrice').addEventListener('input', () => {
+            document.getElementById('minPriceValue').innerText = document.getElementById('minPrice').value;
+            filterProducts();
+        });
+
+        document.getElementById('maxPrice').addEventListener('input', () => {
+            document.getElementById('maxPriceValue').innerText = document.getElementById('maxPrice').value;
+            filterProducts();
+        });
+
+        // Initial load of products
+        displayProducts(products);
+    </script>
+
+</body>
+</html>
