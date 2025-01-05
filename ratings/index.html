@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .rating-container {
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .stars span {
+            font-size: 40px;
+            color: #ccc;
+        }
+        .stars span.active {
+            color: gold;
+        }
+        .output {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="rating-container">
+        <h2>Rate Us</h2>
+        <div class="stars" id="stars">
+            <span data-value="1">&#9733;</span>
+            <span data-value="2">&#9733;</span>
+            <span data-value="3">&#9733;</span>
+            <span data-value="4">&#9733;</span>
+            <span data-value="5">&#9733;</span>
+        </div>
+        <div class="output" id="output">Your Rating: 0</div>
+    </div>
+
+    <script>
+        const stars = document.querySelectorAll('#stars span');
+        const output = document.getElementById('output');
+        let rating = 0;
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                rating = index + 1; // Stars are 1-based
+                updateStars();
+                output.textContent = `Your Rating: ${rating}`;
+            });
+        });
+
+        function updateStars() {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        stars.forEach((star, index) => {
+    // Highlight stars on hover
+    star.addEventListener('mouseover', () => {
+        stars.forEach((s, i) => {
+            s.classList.toggle('active', i <= index);
+        });
+    });
+
+    // Reset stars to current rating on mouse leave
+    star.addEventListener('mouseout', () => {
+        updateStars();
+    });
+
+    // Set the rating on click
+    star.addEventListener('click', () => {
+        rating = index + 1;
+        updateStars();
+        output.textContent = `Your Rating: ${rating}`;
+    });
+});
+
+
+    </script>
+</body>
+</html>
