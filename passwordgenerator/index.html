@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #6a11cb, #2575fc, #ff9a9e, #fad0c4);
+            background-size: 300% 300%;
+            animation: bgAnimation 10s ease infinite;
+            color: #fff;
+            text-align: center;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .output {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            font-size: 18px;
+            padding: 10px;
+            width: 75%;
+            height: 40px;
+            resize: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f9f9f9;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .controls label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .controls input {
+            width: 100px;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        #uppercase {
+            background-color: #FF6F61;
+            color: #fff;
+        }
+
+        #lowercase {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        #numbers {
+            background-color: #2196F3;
+            color: #fff;
+        }
+
+        #special {
+            background-color: #FFC107;
+            color: #fff;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .generate {
+            background-color: #673AB7;
+            color: white;
+        }
+
+        .copy {
+            background-color: #FF5722;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🔒 PasswordGen</div>
+        <h1>Password Generator</h1>
+        <div class="output">
+            <textarea id="password" readonly>Your Password</textarea>
+            <button class="copy" onclick="copyPassword()">Copy</button>
+        </div>
+        <div class="controls">
+            <label for="uppercase">Uppercase Letters:</label>
+            <input type="number" id="uppercase" value="2" min="0" max="50">
+            
+            <label for="lowercase">Lowercase Letters:</label>
+            <input type="number" id="lowercase" value="4" min="0" max="50">
+            
+            <label for="numbers">Numbers:</label>
+            <input type="number" id="numbers" value="3" min="0" max="50">
+            
+            <label for="special">Special Characters:</label>
+            <input type="number" id="special" value="3" min="0" max="50">
+        </div>
+        <button class="generate" onclick="generatePassword()">Generate Password</button>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const uppercaseCount = parseInt(document.getElementById('uppercase').value) || 0;
+            const lowercaseCount = parseInt(document.getElementById('lowercase').value) || 0;
+            const numberCount = parseInt(document.getElementById('numbers').value) || 0;
+            const specialCount = parseInt(document.getElementById('special').value) || 0;
+
+            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const numbers = "0123456789";
+            const special = "!@#$%^&*()_-+=<>?";
+
+            let password = "";
+
+            password += getRandomCharacters(uppercase, uppercaseCount);
+            password += getRandomCharacters(lowercase, lowercaseCount);
+            password += getRandomCharacters(numbers, numberCount);
+            password += getRandomCharacters(special, specialCount);
+
+            password = shufflePassword(password);
+
+            document.getElementById('password').value = password;
+        }
+
+        function getRandomCharacters(charSet, count) {
+            let result = "";
+            for (let i = 0; i < count; i++) {
+                const randomIndex = Math.floor(Math.random() * charSet.length);
+                result += charSet[randomIndex];
+            }
+            return result;
+        }
+
+        function shufflePassword(password) {
+            return password.split('').sort(() => Math.random() - 0.5).join('');
+        }
+
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            passwordField.setSelectionRange(0, 99999); // For mobile devices
+
+            navigator.clipboard.writeText(passwordField.value)
+                .then(() => alert("Password copied to clipboard!"))
+                .catch(err => alert("Failed to copy password: " + err));
+        }
+    </script>
+</body>
+</html>
