@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(120deg, #1e90ff, #7b2ff7);
+            overflow: hidden;
+            animation: gradientMove 8s infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 100%;
+            }
+        }
+
+        /* Stopwatch Container */
+        .stopwatch {
+            margin: 150px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 350px;
+        }
+
+        .time {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        /* Button Styling */
+        .buttons button {
+            font-size: 18px;
+            padding: 12px 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Button Colors */
+        .start {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .stop {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .reset {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        /* Hover Effects */
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Logos for Buttons */
+        button img {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stopwatch">
+        <div class="time" id="display">00:00:00</div>
+        <div class="buttons">
+            <button class="start" onclick="startTimer()">
+                <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Start Icon"> Start
+            </button>
+            <button class="stop" onclick="stopTimer()">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828899.png" alt="Stop Icon"> Stop
+            </button>
+            <button class="reset" onclick="resetTimer()">
+                <img src="https://cdn-icons-png.flaticon.com/512/61/61444.png" alt="Reset Icon"> Reset
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timerInterval;
+
+        function timeToString(time) {
+            const date = new Date(time);
+            const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+            const milliseconds = String(Math.floor(date.getUTCMilliseconds() / 10)).padStart(2, '0');
+            return `${minutes}:${seconds}:${milliseconds}`;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                startTime = Date.now() - elapsedTime;
+                timerInterval = setInterval(() => {
+                    elapsedTime = Date.now() - startTime;
+                    document.getElementById('display').textContent = timeToString(elapsedTime);
+                }, 10);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            stopTimer();
+            elapsedTime = 0;
+            document.getElementById('display').textContent = "00:00:00";
+        }
+    </script>
+</body>
+</html>
